@@ -168,6 +168,10 @@ class Cloudflare():
     # ------------------------------------------------------------------------------- #
 
     def is_Challenge_Request(self, resp):
+        print("entro aqui")
+        print(self.__dict__)
+        print(self.cloudscraper.__dict__)
+        print(resp)
         if self.is_Firewall_Blocked(resp):
             self.cloudscraper.simpleException(
                 CloudflareCode1020,
@@ -175,12 +179,14 @@ class Cloudflare():
             )
 
         if self.is_New_Captcha_Challenge(resp):
+            print("entro aqui")
             self.cloudscraper.simpleException(
                 CloudflareChallengeError,
                 'Detected a Cloudflare version 2 Captcha challenge, This feature is not available in the opensource (free) version.'
             )
 
         if self.is_New_IUAM_Challenge(resp):
+            print("entro aca")
             self.cloudscraper.simpleException(
                 CloudflareChallengeError,
                 'Detected a Cloudflare version 2 challenge, This feature is not available in the opensource (free) version.'
